@@ -43,6 +43,7 @@
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "react-refresh": "^0.11.0",
+    "react-syntax-highlighter": "^15.5.0",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
@@ -58,7 +59,11 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "prestart": "npm run gen:docs",
+    "start": "npm-run-all --parallel start:docs gen:docs-watch",
+    "start:docs": "node scripts/start.js",
+    "gen:docs": "node scripts/generateComponentData.js",
+    "gen:docs-watch": "npm run gen:docs -- --watch",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -133,7 +138,16 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      [
+        "babel-preset-react-app",
+        false
+      ],
+      "babel-preset-react-app/prod"
     ]
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "npm-run-all": "^4.1.5",
+    "react-docgen": "^5.4.3"
   }
 }
