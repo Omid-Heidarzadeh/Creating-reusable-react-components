@@ -19,7 +19,7 @@ const Navigation = ({ components }) => {
     });
 
   return (
-    <nav class="navigation">
+    <nav className="navigation">
       <input type="text" placeholder="Search components" onChange={onSearch} />
       <ul className="navigation-list">{filteredComponentList}</ul>
     </nav>
