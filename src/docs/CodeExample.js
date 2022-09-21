@@ -6,7 +6,12 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 class CodeExample extends React.Component {
   render() {
     return (
-      <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
+      <SyntaxHighlighter
+        language="javascript"
+        style={vscDarkPlus}
+        wrapLongLines
+        showLineNumbers
+      >
         {this.props.children}
       </SyntaxHighlighter>
     );
