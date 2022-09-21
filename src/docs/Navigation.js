@@ -7,12 +7,16 @@ const Navigation = ({ components }) => {
   const onSearch = useCallback((event) => {
     setSearch(event.target.value);
   }, []);
+  const hash = window.location.hash.slice(1) || components[0];
 
   const filteredComponentList = components
     .filter((name) => name.toLowerCase().includes(search.toLowerCase()))
     .map((name) => {
       return (
-        <li key={name}>
+        <li
+          key={name}
+          className={`navigation-item ${name === hash ? 'active' : ''}`}
+        >
           <a href={`#${name}`}>{name}</a>
         </li>
       );
@@ -20,7 +24,14 @@ const Navigation = ({ components }) => {
 
   return (
     <nav className="navigation">
-      <input type="text" placeholder="Search components" onChange={onSearch} />
+      <div>
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Search components"
+          onChange={onSearch}
+        />
+      </div>
       <ul className="navigation-list">{filteredComponentList}</ul>
     </nav>
   );
