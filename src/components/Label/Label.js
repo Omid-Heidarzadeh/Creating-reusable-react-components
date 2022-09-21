@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /** Field Label */
-function Label({ htmlFor, label, required }) {
+function Label({ htmlFor, label, required, style }) {
   return (
-    <label htmlFor={htmlFor} style={{ display: 'block' }}>
+    <label htmlFor={htmlFor} style={{ display: 'block', ...style }}>
       {label}
       {required && <span style={{ color: 'red' }}>*</span>}
     </label>
