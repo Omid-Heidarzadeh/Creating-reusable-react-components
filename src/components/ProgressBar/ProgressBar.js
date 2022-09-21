@@ -40,4 +40,10 @@ ProgressBar.propTypes = {
   percent: PropTypes.number.isRequired,
 };
 
+ProgressBar.defaultProps = {
+  height: 5,
+  width: 150,
+  percent: 0,
+};
+
 export default ProgressBar;
