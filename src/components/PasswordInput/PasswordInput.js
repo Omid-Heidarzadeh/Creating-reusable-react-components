@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import TextInput from 'ps-react/TextInput';
 import EyeIcon from 'ps-react/EyeIcon';
@@ -23,7 +23,7 @@ function PasswordInput({
   const inputRef = useRef(null);
   const type = showPassword ? 'text' : 'password';
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!showVisibilityToggle) return;
 
     const eyeIcon = eyeContainerRef.current;
