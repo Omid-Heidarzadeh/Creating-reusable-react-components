@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Label from 'ps-react/Label';
 
@@ -18,7 +18,7 @@ function TextInput({
   children,
   ...props
 }) {
-  const baseLabelStyle = { color: error ? 'red' : '', marginBottom: '.5em' };
+  const [isTouched, setIsTouched] = useState(false);
   const labelStyle = { ...baseLabelStyle, ...style?.label };
   const baseInputStyle = { borderColor: error ? 'red' : '', lineHeight: 1.5 };
   const inputStyle = { ...baseInputStyle, ...style?.input };
@@ -28,6 +28,11 @@ function TextInput({
     fontSize: '.75em',
     Height: '1.1em',
   };
+
+  const onBlur = useCallback(() => {
+    if (!isTouched) setIsTouched(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -52,6 +57,7 @@ function TextInput({
           minLength={minLength}
           maxLength={maxLength}
           onChange={onChange}
+          onBlur={onBlur}
           required={required}
           style={inputStyle}
           ref={inputRef}
@@ -59,7 +65,7 @@ function TextInput({
         />
         {children}
       </span>
-      {<div style={errorStyle}>{error}</div>}
+      {isTouched && <div style={errorStyle}>{error}</div>}
     </div>
   );
 }
