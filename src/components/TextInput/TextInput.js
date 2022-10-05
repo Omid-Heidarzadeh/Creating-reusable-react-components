@@ -19,8 +19,17 @@ function TextInput({
   ...props
 }) {
   const [isTouched, setIsTouched] = useState(false);
+
+  // Default styles
+  const baseLabelStyle = {
+    color: isTouched && error ? 'red' : '',
+    marginBottom: '.5em',
+  };
   const labelStyle = { ...baseLabelStyle, ...style?.label };
-  const baseInputStyle = { borderColor: error ? 'red' : '', lineHeight: 1.5 };
+  const baseInputStyle = {
+    borderColor: isTouched && error ? 'red' : '',
+    lineHeight: 1.5,
+  };
   const inputStyle = { ...baseInputStyle, ...style?.input };
   const errorStyle = {
     color: 'red',
@@ -35,7 +44,7 @@ function TextInput({
   }, []);
 
   return (
-    <div>
+    <div style={{ marginBottom: '1em', ...style?.container }}>
       <Label
         label={label}
         htmlFor={htmlFor}
