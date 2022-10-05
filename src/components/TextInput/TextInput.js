@@ -8,11 +8,14 @@ function TextInput({
   required,
   type = 'text',
   value,
+  minLength = 0,
+  maxLength = 100,
   placeholder,
   onChange,
   style,
   error,
   inputRef,
+  children,
   ...props
 }) {
   const baseLabelStyle = { color: error ? 'red' : '', marginBottom: '.5em' };
@@ -46,12 +49,15 @@ function TextInput({
           type={type}
           placeholder={placeholder}
           value={value}
+          minLength={minLength}
+          maxLength={maxLength}
           onChange={onChange}
           required={required}
           style={inputStyle}
           ref={inputRef}
           {...props}
         />
+        {children}
       </span>
       {<div style={errorStyle}>{error}</div>}
     </div>
@@ -73,6 +79,12 @@ TextInput.propTypes = {
 
   /** Input value */
   value: PropTypes.string,
+
+  /** Input field value min-length */
+  minLength: PropTypes.string,
+
+  /** Input field value max-length */
+  maxLength: PropTypes.string,
 
   /** Input Placeholder value */
   placeholder: PropTypes.string,
