@@ -83,7 +83,7 @@ TextInput.propTypes = {
   /** Label text */
   label: PropTypes.string.isRequired,
 
-  /** Input field HTML ID & HTML "For" value of label element */
+  /** Input field HTML ID of input element & HTML "For" value of label element */
   htmlFor: PropTypes.string.isRequired,
 
   /** Specify if this field is required */
