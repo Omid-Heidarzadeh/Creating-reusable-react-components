@@ -1,7 +1,7 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
-function ProgressBar({ height, width, percent }) {
+const ProgressBar = ({ height, width, percent, style }) => {
   function getWidth() {
     return parseInt((width / 100) * percent);
   }
@@ -12,14 +12,14 @@ function ProgressBar({ height, width, percent }) {
       : percent < 50
       ? 'orange'
       : percent < 75
-      ? 'yellow'
+      ? '#f4af38'
       : percent < 100
       ? 'yellowgreen'
       : 'green';
   }
 
   return (
-    <div style={{ width, height }}>
+    <div style={{ ...style, width, height }}>
       <div
         style={{
           width: getWidth(),
@@ -29,15 +29,20 @@ function ProgressBar({ height, width, percent }) {
       ></div>
     </div>
   );
-}
+};
 
 ProgressBar.propTypes = {
   /** Progress bar height in pixels */
   height: PropTypes.number,
+
   /** Progress bar width in pixels */
   width: PropTypes.number.isRequired,
+
   /** Progress bar percent */
   percent: PropTypes.number.isRequired,
+
+  /** Customized style */
+  style: PropTypes.object,
 };
 
 ProgressBar.defaultProps = {
