@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import TextInput from 'ps-react/TextInput';
 import EyeIcon from 'ps-react/EyeIcon';
@@ -8,13 +8,17 @@ function PasswordInput({
   label = 'Password',
   htmlFor = 'password',
   value,
+  minLength = 8,
+  maxLength = 20,
+  error = '',
   onChange,
   quality = 0,
   placeholder,
   showVisibilityToggle = true,
+  style,
+  ...props
 }) {
   const [showPassword, setShowPassword] = useState(false);
-  const [isTouched, setIsTouched] = useState(false);
   const eyeContainerRef = useRef(null);
   const inputRef = useRef(null);
   const type = showPassword ? 'text' : 'password';
@@ -38,25 +42,38 @@ function PasswordInput({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onBlur = useCallback(() => {
-    if (!isTouched) setIsTouched(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <div style={{ position: 'relative' }}>
+    <div
+      style={{
+        position: 'relative',
+        marginBottom: '1em',
+        ...style?.container,
+      }}
+    >
       <TextInput
         label={label}
         htmlFor={htmlFor}
         type={type}
         value={value}
+        minLength={minLength}
+        maxLength={maxLength}
         placeholder={placeholder || 'Enter password'}
         onChange={onChange}
-        onBlur={onBlur}
-        error={isTouched && !value ? 'Please enter a password' : ''}
+        error={error}
         inputRef={inputRef}
         required
-      />
+        style={{
+          label: { ...style?.label },
+          input: {
+            ...style?.input,
+            paddingRight: '1.5em',
+            paddingLeft: '.5em',
+          },
+        }}
+        {...props}
+      >
+        <ProgressBar style={{ marginTop: '.5em' }} percent={quality} />
+      </TextInput>
       {showVisibilityToggle && (
         <span
           style={{
@@ -69,7 +86,6 @@ function PasswordInput({
           <EyeIcon />
         </span>
       )}
-      <ProgressBar percent={quality} />
     </div>
   );
 }
@@ -84,8 +100,17 @@ PasswordInput.propTypes = {
   /** Input field value */
   value: PropTypes.string.isRequired,
 
+  /** Input field value min-length */
+  minLength: PropTypes.string,
+
+  /** Input field value max-length */
+  maxLength: PropTypes.string,
+
   /** Input field placeholder */
   placeholder: PropTypes.string,
+
+  /** Error message */
+  error: PropTypes.string,
 
   /** Input field change event handler */
   onChange: PropTypes.func.isRequired,
@@ -95,6 +120,12 @@ PasswordInput.propTypes = {
 
   /** Show visibility toggle icon */
   showVisibilityToggle: PropTypes.bool,
+
+  /** Customized styles */
+  style: PropTypes.shape({
+    label: PropTypes.object,
+    input: PropTypes.object,
+  }),
 };
 
 export default PasswordInput;
