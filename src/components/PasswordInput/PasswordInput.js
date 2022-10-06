@@ -62,6 +62,7 @@ function PasswordInput({
         error={error}
         inputRef={inputRef}
         required
+        autoComplete="current-password"
         style={{
           label: { ...style?.label },
           input: {

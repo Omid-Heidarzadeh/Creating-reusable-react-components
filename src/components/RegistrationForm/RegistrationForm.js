@@ -79,6 +79,7 @@ function RegistrationForm({
 
   return (
     <form
+      autoComplete="on"
       onSubmit={submitHandler}
       style={{ margin: 'auto', padding: '1em', ...style.form }}
     >
@@ -98,6 +99,7 @@ function RegistrationForm({
           value={state.email}
           onChange={changeHandler}
           error={errors.email && 'Enter a valid email address'}
+          autoComplete="email"
           required
           style={{ ...style.email }}
         />
