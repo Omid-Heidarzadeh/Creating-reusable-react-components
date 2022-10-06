@@ -27,6 +27,7 @@ function RegistrationForm({
   successMessage = 'Registration successful.',
   passMinLength = 8,
   style = {},
+  onSubmit,
 }) {
   const [state, dispatch] = useReducer(reducer, { email: '', password: '' });
   const errors = checkValidity(state);
@@ -60,8 +61,9 @@ function RegistrationForm({
         }
       }
       window.alert(successMessage);
+      onSubmit(state);
     },
-    [errors, successMessage]
+    [errors, onSubmit, state, successMessage]
   );
 
   function checkValidity(state) {
@@ -113,7 +115,7 @@ function RegistrationForm({
           onChange={changeHandler}
           quality={
             !errors.password &&
-            Math.min(100, (state.password.length - 8) * 10 + 50)
+            Math.max(0, Math.min(100, (state.password.length - 8) * 10 + 50))
           }
           error={
             errors.password &&
@@ -137,6 +139,9 @@ RegistrationForm.propTypes = {
 
   /** Minimum acceptable password length */
   passMinLength: PropTypes.number,
+
+  /** Submit handler */
+  onSubmit: PropTypes.func.isRequired,
 
   /** Style object to override default form styles */
   style: PropTypes.shape({

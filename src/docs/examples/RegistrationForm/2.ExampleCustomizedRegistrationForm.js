@@ -3,6 +3,7 @@ import RegistrationForm from 'ps-react/RegistrationForm';
 
 /** 2. Customized Registration Form */
 function ExampleCustomizedRegistrationForm() {
+  /** Styles */
   const formStyle = { backgroundColor: '#faf3c9', borderRadius: '15px' };
   const fieldsetStyle = {
     backgroundColor: '#eee',
@@ -45,6 +46,9 @@ function ExampleCustomizedRegistrationForm() {
         email: emailFieldStyle,
         password: passwordFieldStyle,
         submit: submitButtonStyle,
+      }}
+      onSubmit={(user) => {
+        console.log(user);
       }}
     />
   );
