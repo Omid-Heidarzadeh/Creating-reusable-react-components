@@ -1,0 +1,25 @@
+.textinput {
+  margin-bottom: 1em;
+}
+
+.textinput__label {
+  margin-bottom: 0.5em;
+}
+
+.textinput__input {
+  line-height: 1.5;
+}
+
+.textinput__message--state-error {
+  margin: 0.5em 0.25em;
+  font-size: 0.75em;
+  height: 1.1em;
+}
+
+.textinput--state-error {
+  color: red;
+}
+
+.textinput__input--state-error {
+  border-color: red;
+}
