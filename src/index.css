@@ -1,13 +1,113 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Global styles */
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666666;
+  margin: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+.clear {
+  clear: both;
+}
+
+td {
+  border-top: solid 1px #d3d3d3;
+}
+
+td,
+th {
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Documentation site component styles */
+.example {
+  border: solid 1px #d3d3d3;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f4f6f9;
+}
+
+.example h4:first-of-type {
+  margin-top: 0;
+}
+
+.example p:last-of-type {
+  margin-bottom: 0;
+}
+
+.props {
+  margin-bottom: 50px;
+}
+
+.props tr td:last-of-type {
+  text-align: center;
+}
+
+.props th,
+td {
+  text-align: left;
+  padding: 5px;
+}
+
+.navigation {
+  background-color: #1a1b41;
+  float: left;
+  min-height: 100vh;
+  padding: 1em;
+  position: sticky;
+  top: 0;
+  width: 250px;
+}
+
+.navigation .search-input {
+  width: 100%;
+  /* position: sticky; */
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.navigation-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navigation-item {
+  background-color: #56567c;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  color: rgb(255, 217, 0);
+}
+
+.navigation-item a {
+  color: inherit;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0.5em 1em;
+}
+
+.navigation-item.active {
+  color: #fff;
+  background-color: #2f34c3;
+  /* outline-offset: 2px; */
+  border: 3px #dd614a solid;
+}
+
+.componentpage {
+  overflow: auto;
+  padding-left: 25px;
 }
