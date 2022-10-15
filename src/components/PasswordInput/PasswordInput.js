@@ -8,11 +8,12 @@ function PasswordInput({
   label = 'Password',
   htmlFor = 'password',
   value,
-  minLength = 8,
-  maxLength = 20,
+  minLength = '8',
+  maxLength = '20',
   error = '',
   onChange,
   quality = 0,
+  showQuality = false,
   placeholder,
   showVisibilityToggle = true,
   style,
@@ -24,7 +25,7 @@ function PasswordInput({
   const type = showPassword ? 'text' : 'password';
 
   useLayoutEffect(() => {
-    if (!showVisibilityToggle) return;
+    if (!showVisibilityToggle || !eyeContainerRef.current) return;
 
     const eyeIcon = eyeContainerRef.current;
     const containerRect = eyeContainerRef.current.getBoundingClientRect();
@@ -73,10 +74,13 @@ function PasswordInput({
         }}
         {...props}
       >
-        <ProgressBar style={{ marginTop: '.5em' }} percent={quality} />
+        {showQuality && (
+          <ProgressBar style={{ marginTop: '.5em' }} percent={quality} />
+        )}
       </TextInput>
       {showVisibilityToggle && (
         <span
+          className="password-visibility-toggle"
           style={{
             position: 'absolute',
             display: 'inline-flex',
@@ -118,6 +122,9 @@ PasswordInput.propTypes = {
 
   /** Computed password quality in percent */
   quality: PropTypes.number,
+
+  /** Show/hide password quality bar */
+  showQuality: PropTypes.bool,
 
   /** Show visibility toggle icon */
   showVisibilityToggle: PropTypes.bool,
