@@ -111,7 +111,7 @@ TextInput.propTypes = {
   error: PropTypes.string,
 
   /** Input field DOM reference */
-  inputRef: PropTypes.instanceOf(React.createRef.prototype),
+  inputRef: PropTypes.object,
 };
 
 export default TextInput;

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProgressBar = ({ height, width, percent, style }) => {
-  function getWidth() {
-    return parseInt((width / 100) * percent);
-  }
+export function getWidth({ width, percent }) {
+  return parseInt((width / 100) * percent);
+}
 
+const ProgressBar = ({ height, width, percent, style }) => {
   function getBackgroundColor() {
     return percent < 25
       ? 'red'
@@ -22,7 +22,7 @@ const ProgressBar = ({ height, width, percent, style }) => {
     <div style={{ ...style, width, height }}>
       <div
         style={{
-          width: getWidth(),
+          width: getWidth({ width, percent }),
           height: height,
           backgroundColor: getBackgroundColor(),
         }}
