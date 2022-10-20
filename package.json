@@ -58,15 +58,18 @@
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
+  "homepage": "http://omid-heidarzadeh.github.io/Creating-reusable-react-components/",
   "scripts": {
     "prestart": "npm run gen:docs",
     "start": "npm-run-all --parallel start:docs gen:docs-watch",
     "start:docs": "node scripts/start.js",
     "gen:docs": "node scripts/generateComponentData.js",
     "gen:docs-watch": "npm run gen:docs -- --watch",
-    "build": "node scripts/build.js",
+    "build:docs": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "ci": "npm install --legacy-peer-deps"
+    "ci": "npm install --legacy-peer-deps",
+    "predeploy:docs": "npm run build:docs",
+    "deploy:docs": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -151,6 +154,7 @@
     "chokidar": "^3.5.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-17-updated": "^1.0.2",
+    "gh-pages": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "react-docgen": "^5.4.3",
     "react-test-renderer": "^18.2.0"
